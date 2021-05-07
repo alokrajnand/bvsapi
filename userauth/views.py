@@ -49,3 +49,5 @@ def UserViewSet(request, format=None):
             return JsonResponse(serializer.errors, status=400)
 
 
+### Create a Generate OTP Function and store it in table specific to the user
+### Create a Send mail function
