@@ -16,7 +16,7 @@ from datetime import datetime
 # *********************************************************
 
 class Profile(models.Model):
-    user_email_address = models.EmailField(max_length=255, unique=True, null=False)
+    user_email_address = models.OneToOneField('userauth.User', to_field='email_address', primary_key=True , on_delete=models.CASCADE)
     user_name = models.CharField(max_length=200, null=False)
     user_date_of_birth = models.DateField(null=False)
     phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$', message="phone number is not valid")
