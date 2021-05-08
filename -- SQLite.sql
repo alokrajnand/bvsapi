@@ -23,3 +23,13 @@ course_lesson ( course_header_id, lesson_name)
    ( 'Type-Script', 'Lesson Two');
 
    select * from course_lesson;
+
+
+INSERT INTO 
+course_ratings ( course_header_id, rated_by,rating,rating_comment)
+   VALUES
+   ( 'angular', 'alok@gmail.com','5','good');
+
+   select * from course_ratings;
+
+   DELETE from course_ratings where course_header_id = 'angular'

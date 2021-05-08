@@ -19,3 +19,10 @@ class LessonSerializer(serializers.ModelSerializer):
     class Meta:
         model = Lesson
         fields = "__all__"
+
+
+class CourseRatingsSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Ratings
+        fields = "__all__"

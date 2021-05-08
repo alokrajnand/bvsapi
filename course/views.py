@@ -72,3 +72,23 @@ class LessonViewSet(viewsets.ViewSet):
         else:
             serializer = LessonSerializer(data)
             return Response(serializer.data)
+
+
+# ******************************************************************
+# Ratings
+# *******************************************************************
+
+class RatingsViewSet(viewsets.ViewSet):
+    permission_classes = [AllowAny]
+
+    def get_ratings(self, request, name):
+        data = Ratings.objects.filter(course_header=name)
+        if (data.count() == 0):
+            return Response({
+                'message': 'No Data',
+                'status': 400
+            })
+        else:
+            serializer = CourseRatingsSerializer(data, many=True)
+            return Response(serializer.data)
+

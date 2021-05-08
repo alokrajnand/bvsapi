@@ -10,3 +10,9 @@ class LessonAdmin(admin.ModelAdmin):
     list_display = ['id', 'course_header_id', 'lesson_name']  
 
 admin.site.register(Lesson, LessonAdmin)
+
+
+class RatingsAdmin(admin.ModelAdmin):
+    list_display = ['id', 'course_header_id', 'rating','rated_by']  
+
+admin.site.register(Ratings, RatingsAdmin)
