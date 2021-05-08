@@ -32,7 +32,7 @@ class UserProfileViewSet(viewsets.ViewSet):
     permission_classes = [AllowAny]
 
     def get_profile(self, request, name, *args, **kwargs):
-        user_profile = Profile.objects.get(email_address=name)
+        user_profile = Profile.objects.get(user_email_address=name)
         serializer = UserProfileSerializer(user_profile)
         return Response(serializer.data)
 
@@ -48,9 +48,11 @@ class UserProfileViewSet(viewsets.ViewSet):
         else:
             return JsonResponse(serializer.errors, status=400)
 
+    
+    
     # Update profile data
     def put_profile(self, request, name, pk=None):
-        user_profile = Profile.objects.get(email_address=name)
+        user_profile = Profile.objects.get(user_email_address=name)
         serializer = UserProfileSerializer(
             user_profile, data=request.data, partial=True)
         if serializer.is_valid():

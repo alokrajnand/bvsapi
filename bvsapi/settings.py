@@ -44,7 +44,8 @@ INSTALLED_APPS = [
 
     #####
     'userauth',
-    'userprofile'
+    'userprofile',
+    'course'
 ]
 
 MIDDLEWARE = [
