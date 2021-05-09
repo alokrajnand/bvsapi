@@ -90,5 +90,7 @@ admin.site.register(User, UserAdmin)
 # unregister the Group model from admin.
 # admin.site.unregister(Group)
 
-
+class VarificationAdmin(admin.ModelAdmin):
+    list_display = ['id','email_address','email_varification','mail_otp_counter']  
+admin.site.register(Varification, VarificationAdmin)
 # Register your models here.

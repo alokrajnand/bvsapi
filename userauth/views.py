@@ -21,6 +21,7 @@ from django.core.mail import send_mail
 # importing "random" for random operations
 import random
 from django.db import Error
+from functions.generateOtp import *
 
 # ****************************************************
 # USER REGISTRATION PROCESS
@@ -49,5 +50,62 @@ def UserViewSet(request, format=None):
             return JsonResponse(serializer.errors, status=400)
 
 
-### Create a Generate OTP Function and store it in table specific to the user
-### Create a Send mail function
+# **********************************************************
+# post views for the login and send some user information
+# *********************************************************
+
+
+class LoginViewSet(ObtainAuthToken):
+    def post(self, request, *args, **kwargs):
+        # TO get data from the request object
+        print(request.data)
+        user = request.data.get('username')
+        # validate that user exists in the database
+        email = User.objects.filter(email_address=user)
+        # if user does not exists in the database send massage need to register
+        if (email.count() == 0):
+            return Response({
+                'message': 'You dont have an account on this platform. Please Register',
+                'status': 400
+            })
+        # If user exists in the data base check for the varification
+        else:
+            email_active = Varification.objects.filter(email_address_id=user)
+            # if data for the user daoes not exists in the varification table
+            if (email_active.count() == 0):
+                # generate otp and send it to email and ask for varification redirect it to varification page
+                otp = GenerateOtp(user)
+                print(otp)
+                return Response({
+                    'message': 'Your Email is not varified !! code is sent to your mail,Please verify your email Address',
+                    'status': 400
+                })
+
+            # if data for the user exists in the varification table then cheack the varification status
+            else:
+                # validate the validation and counter accordingly respons
+                data = Varification.objects.get(email_address_id=user)
+                # check the varification status on the varification table if not varified
+                if (data.email_varification != 'Done'):
+                    # generate otp and send and ask for varification redirect it to varification page
+                    #otp = GenerateOtp(user)
+                    #print(otp)
+                    return Response({
+                        'message': 'Your Email is not varified !! code is sent to your mail,Please verify your email Address',
+                        'status': 400
+                    })
+                # If varification is allready in the varification table
+                else:
+                    ##otp = GenerateOtp(user)
+                    ##print(otp)
+                    serializer = self.serializer_class(data=request.data, context={'request': request})
+                    serializer.is_valid(raise_exception=True)
+                    user = serializer.validated_data['user']
+                    token, created = Token.objects.get_or_create(user=user)
+                    return Response({
+                        'token': token.key,
+                        'email_address': user.email_address,
+                    })
+
+
+        

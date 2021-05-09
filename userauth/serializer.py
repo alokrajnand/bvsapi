@@ -22,3 +22,11 @@ class MyUserSerializer(serializers.ModelSerializer):
 
 # we must have to update the sceanirio for the updating the password also
 
+# ******************************************************************
+# varification serializer
+# *******************************************************************
+class VarificationSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Varification
+        fields = '__all__'

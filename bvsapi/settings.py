@@ -25,10 +25,16 @@ SECRET_KEY = 'django-insecure-t8$+7+m)ib!z+z5gf)pjm%=jn*tgn*ub42#-t$8#z2nblwpgx&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 AUTH_USER_MODEL = 'userauth.User'
 
 # Application definition
+
+###
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_WHITELIST = (
+'http://localhost:4200',
+)
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -45,7 +51,9 @@ INSTALLED_APPS = [
     #####
     'userauth',
     'userprofile',
-    'course'
+    'course',
+    'quiz',
+    'discussion'
 ]
 
 MIDDLEWARE = [
@@ -56,6 +64,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'bvsapi.urls'

@@ -78,4 +78,18 @@ def create_auth_token(sender, instance=None, created=False, **kwargs):
         Token.objects.create(user=instance)
 
 
-##############
+# **********************************************************
+# Varification model 
+# *********************************************************
+
+class Varification(models.Model):
+    email_address = models.OneToOneField(User, to_field='email_address', on_delete=models.CASCADE)
+    email_varification = models.CharField(max_length=20, null=True)
+    phone_varification = models.CharField(max_length=20, null=True)
+    mail_otp_counter = models.IntegerField(null=True)
+    phone_otp_counter = models.IntegerField(null=True)
+    created_dt = models.DateTimeField(default=datetime.now, null=True)
+    updated_dt = models.DateTimeField(default=datetime.now, null=True)
+
+    def __str__(self):
+        return self.__all__

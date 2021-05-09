@@ -33,3 +33,18 @@ course_ratings ( course_header_id, rated_by,rating,rating_comment)
    select * from course_ratings;
 
    DELETE from course_ratings where course_header_id = 'angular'
+
+
+
+create table userauth_varification(
+   user_email_address VARCHAR(100) NOT NULL,
+   email_varification VARCHAR(100) NULL,
+   phone_varification VARCHAR(40) NULL,
+   PRIMARY KEY (user_email_address)
+);
+
+drop TABLE userauth_varification;
+INSERT INTO 
+userauth_varification ( email_address_id, email_varification)
+   VALUES
+   ( 'alok@gmail.com','Done');
