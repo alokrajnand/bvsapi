@@ -74,8 +74,8 @@ class LoginViewSet(ObtainAuthToken):
             # if data for the user daoes not exists in the varification table
             if (email_active.count() == 0):
                 # generate otp and send it to email and ask for varification redirect it to varification page
-                otp = GenerateOtp(user)
-                print(otp)
+                #otp = GenerateOtp(user)
+                #print(otp)
                 return Response({
                     'message': 'Your Email is not varified !! code is sent to your mail,Please verify your email Address',
                     'status': 400
@@ -109,3 +109,40 @@ class LoginViewSet(ObtainAuthToken):
 
 
         
+# **********************************************************
+# post view for the email varification
+# *********************************************************
+
+
+class VarificationViewSet(viewsets.ViewSet):
+    permission_classes = [AllowAny]
+
+    def post_auth(self, request, *args, **kwargs):
+        email = request.data.get('email_address_id')
+        otp = request.data.get('otp')
+        print(email)
+        otp = int(otp)
+        print(otp)
+        # get otp from the table
+        try:
+            data = EmailOtp.objects.get(email_address_id=email)
+            # compare the otp
+            if (otp == data.otp):
+                # cretae a entry in the varification table
+                Varification.objects.filter(email_address_id=email).create(
+                    email_address_id=email,
+                    email_varification='Done'
+                )
+                # varification successfulle please login
+                return Response('success')
+            else:
+                return Response('fail')
+
+        except EmailOtp.DoesNotExist:
+            return Response("server issue")
+
+
+
+
+
+

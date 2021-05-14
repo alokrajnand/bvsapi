@@ -48,3 +48,6 @@ INSERT INTO
 userauth_varification ( email_address_id, email_varification)
    VALUES
    ( 'alok@gmail.com','Done');
+
+
+    DELETE from userauth_varification where email_varification = 'done'

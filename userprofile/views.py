@@ -21,6 +21,7 @@ from django.core.mail import send_mail
 # importing "random" for random operations
 import random
 from django.db import Error
+from functions.generateOtp import *
 
 
 # ******************************************************************
@@ -39,11 +40,19 @@ class UserProfileViewSet(viewsets.ViewSet):
     # insert data to profile when signup
 
     def post_profile(self, request, *args, **kwargs):
+        
         json_parser = JSONParser()
         data = json_parser.parse(request)
         serializer = UserProfileSerializer(data=data)
         if serializer.is_valid():
-            serializer.save()
+            serializer.save()  
+            email_address = serializer.data.get('user_email_address')   
+            print(email_address)
+            otp = GenerateOtp(email_address)
+            print(otp)
+            ## call sen mail function to send otp 
+
+            ## 
             return JsonResponse(serializer.data, status=201)
         else:
             return JsonResponse(serializer.errors, status=400)

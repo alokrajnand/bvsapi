@@ -1,9 +1,6 @@
 from django.db import models
-# Create your models here.
-from django.db import models
 from django.contrib.auth.models import (BaseUserManager, AbstractBaseUser)
 from django.core.validators import RegexValidator
-# write the code of user manager
 from django.conf import settings
 from django.db.models.signals import post_save
 from django.dispatch import receiver
@@ -19,9 +16,11 @@ class Profile(models.Model):
     user_email_address = models.OneToOneField('userauth.User', to_field='email_address', primary_key=True , on_delete=models.CASCADE)
     user_name = models.CharField(max_length=200, null=False)
     user_date_of_birth = models.DateField(null=False)
+    user_role=models.CharField(max_length=200, null=False, default='User')
     phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$', message="phone number is not valid")
-    user_phone_number = models.CharField(validators=[phone_regex], max_length=17, unique=False, null=True),
+    user_phone_number = models.CharField(validators=[phone_regex], max_length=17, unique=False, null=True)
     user_class=models.CharField(max_length=200, null=True)
+    user_aim=models.CharField(max_length=200, null=True)
     user_designation = models.CharField(max_length=200, null=True)
     user_tag_line = models.CharField(max_length=200, null=True)
     user_tag_line_desc = models.CharField(max_length=300, null=True)

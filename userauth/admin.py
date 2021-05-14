@@ -88,9 +88,9 @@ admin.site.register(User, UserAdmin)
 
 # ... and, since we're not using Django's built-in permissions,
 # unregister the Group model from admin.
-# admin.site.unregister(Group)
+admin.site.unregister(Group)
 
 class VarificationAdmin(admin.ModelAdmin):
-    list_display = ['id','email_address','email_varification','mail_otp_counter']  
+    list_display = ['id','email_address','email_varification']  
 admin.site.register(Varification, VarificationAdmin)
 # Register your models here.
