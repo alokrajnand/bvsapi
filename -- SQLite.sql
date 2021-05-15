@@ -13,14 +13,14 @@ userprofile_profile ( user_email_address_id, user_name,user_date_of_birth,user_c
 INSERT INTO 
 course_course ( course_header, course_name,course_category)
    VALUES
-   ( 'Type-Script', 'Type Script','Computer Science');
+   ( 'python', 'Python','Computer Science');
 
    select * from course_course;
 
 INSERT INTO 
 course_lesson ( course_header_id, lesson_name)
    VALUES
-   ( 'Type-Script', 'Lesson Two');
+   ( 'Type-Script', 'Lesson Four');
 
    select * from course_lesson;
 

@@ -1,5 +1,7 @@
 
 # this is for login and logout authentication
+from django.http import response
+from django.http.response import HttpResponseServerError
 from rest_framework.renderers import JSONRenderer
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.authtoken.views import ObtainAuthToken
@@ -65,12 +67,12 @@ class LessonViewSet(viewsets.ViewSet):
     def get_detail(self, request, name):
         data = Lesson.objects.filter(course_header=name)
         if (data.count() == 0):
-            return Response({
+            return Response([{
                 'message': 'No Data',
                 'status': 400
-            })
+            }])
         else:
-            serializer = LessonSerializer(data)
+            serializer = LessonSerializer(data , many=True)
             return Response(serializer.data)
 
 
@@ -84,7 +86,7 @@ class RatingsViewSet(viewsets.ViewSet):
     def get_ratings(self, request, name):
         data = Ratings.objects.filter(course_header=name)
         if (data.count() == 0):
-            return Response({
+            return response({
                 'message': 'No Data',
                 'status': 400
             })
