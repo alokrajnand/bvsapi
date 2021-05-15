@@ -34,18 +34,18 @@ class QuizViewSet(viewsets.ViewSet):
 
     def get_detail(self, request, name):
         data = Quiz.objects.get(course_header=name)
-        serializer = quizSerializer(data)
+        serializer = QuizSerializer(data)
         return Response(serializer.data)
 
     def get_quiz_by_course(self, request, name):
         data = Quiz.objects.filter(course_header=name)
         if (data.count() == 0):
-            return Response({
+            return Response([{
                 'message': 'No Data',
                 'status': 400
-            })
+            }])
         else:
-            serializer = CourseFaqSerializer(data, many=True)
+            serializer = QuizSerializer(data, many=True)
             return Response(serializer.data)
 
 

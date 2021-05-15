@@ -9,7 +9,8 @@ from course.models import *
 
 class Discussion(models.Model):
     course_header = models.ForeignKey(Course, to_field='course_header', on_delete=models.CASCADE)
-    discussion_name = models.CharField(max_length=50, unique=True, null=False)
+    discussion_header = models.CharField(max_length=50, unique=True, null=False , default="")
+    discussion_name = models.CharField(max_length=50, unique=True, null=False, default="")
     discussion_desc = models.CharField(max_length=50,  null=False)
     created_dt = models.DateTimeField(default=datetime.now, null=True)
     updated_dt = models.DateTimeField(default=datetime.now, null=True)
