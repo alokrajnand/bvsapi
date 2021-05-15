@@ -13,22 +13,29 @@ userprofile_profile ( user_email_address_id, user_name,user_date_of_birth,user_c
 INSERT INTO 
 course_course ( course_header, course_name,course_category)
    VALUES
-   ( 'python', 'Python','Computer Science');
+   ( 'type-script', 'Type Script','Computer Science');
 
    select * from course_course;
+DELETE from course_lesson where course_header_id = 'Type-Script'
+INSERT INTO 
+course_lesson ( course_header_id, lesson_name)
+   VALUES
+   ( 'type-script', 'Lesson Four');
+
+   select * from course_lesson;
 
 INSERT INTO 
 course_lesson ( course_header_id, lesson_name)
    VALUES
    ( 'Type-Script', 'Lesson Four');
 
-   select * from course_lesson;
-
 
 INSERT INTO 
-course_ratings ( course_header_id, rated_by,rating,rating_comment)
+quiz_quiz ( course_header_id, quiz_name,quiz_desc)
    VALUES
-   ( 'angular', 'alok@gmail.com','5','good');
+   ( 'angular', 'Quiz two' ,'quiz to test');
+
+
 
    select * from course_ratings;
 
@@ -51,3 +58,8 @@ userauth_varification ( email_address_id, email_varification)
 
 
     DELETE from userauth_varification where email_varification = 'done'
+
+INSERT INTO 
+discussion_discussion ( course_header_id, discussion_header,discussion_name, discussion_desc)
+   VALUES
+   ( 'type-script', 'question-number-four' ,'Question Number Four' , "Some early exploration of the dashboard/overview for an eLearning platform I'm working on. This past month I've been working on some exciting stuff and can't wait to share more in the future!");
