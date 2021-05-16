@@ -27,6 +27,7 @@ class Course(models.Model):
 
 class Lesson(models.Model):
     course_header = models.ForeignKey(Course, to_field='course_header', on_delete=models.CASCADE)
+    lesson_id=models.IntegerField(default=0)
     lesson_name = models.CharField(max_length=50, unique=True, null=False)
     lesson_description = models.CharField(max_length=100, null=True)
     lesson_video_link = models.CharField(max_length=50, null=True)

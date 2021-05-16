@@ -7,6 +7,6 @@ from .views import *
 urlpatterns = [
     path('', DiscussionViewSet.as_view({'get': 'get'})),
     path('<name>', DiscussionViewSet.as_view({'get': 'get_detail'})),
-    path('discussion/<name>', DiscussionViewSet.as_view({'get': 'get_discussion_by_course'})),
+    path('disc/<name>', DiscussionViewSet.as_view({'get': 'get_discussion_by_course'})),
 
 ]

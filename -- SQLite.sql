@@ -63,3 +63,6 @@ INSERT INTO
 discussion_discussion ( course_header_id, discussion_header,discussion_name, discussion_desc)
    VALUES
    ( 'type-script', 'question-number-four' ,'Question Number Four' , "Some early exploration of the dashboard/overview for an eLearning platform I'm working on. This past month I've been working on some exciting stuff and can't wait to share more in the future!");
+
+
+update course_lesson set lesson_id =4 where id =8
