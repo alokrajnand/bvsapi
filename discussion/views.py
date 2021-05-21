@@ -47,3 +47,15 @@ class DiscussionViewSet(viewsets.ViewSet):
         else:
             serializer = DiscussionSerializer(data, many=True)
             return Response(serializer.data)
+
+    
+    def get_discussion_by_lesson(self, request, name):
+        data = Discussion.objects.filter(course_header=name)
+        if (data.count() == 0):
+            return Response({
+                'message': 'No Data',
+                'status': 400
+            })
+        else:
+            serializer = DiscussionSerializer(data, many=True)
+            return Response(serializer.data)
