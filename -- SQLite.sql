@@ -15,12 +15,28 @@ course_course ( course_header, course_name,course_category)
    VALUES
    ( 'type-script', 'Type Script','Computer Science');
 
+
+update course_course set course_short_desc = "Master Typescript by learning popular design patterns and building complex projects. Includes React and Express! complex projects. Includes React and Express!"
+   
    select * from course_course;
-DELETE from course_lesson where course_header_id = 'Type-Script'
+DELETE from django_migrations 
+
+where course_header_id = 'Type-Script'
+
 INSERT INTO 
-course_lesson ( course_header_id, lesson_name)
+course_lesson ( 
+   course_header_id,
+   course_name,
+   lesson_header, 
+   lesson_name,
+   lesson_id,
+   lesson_video_link,
+   lesson_video_minute)
    VALUES
-   ( 'type-script', 'Lesson Four');
+   ( 'type-script', 'Type Script',
+   'type-script-lesson-four','Lesson Four' ,
+   1,'https://www.youtube.com/embed/tZrpoSUQCJ0',
+   20);
 
    select * from course_lesson;
 
@@ -31,9 +47,9 @@ course_lesson ( course_header_id, lesson_name)
 
 
 INSERT INTO 
-quiz_quiz ( course_header_id, quiz_name,quiz_desc)
+quiz_quiz ( course_header_id, quiz_header, quiz_name,quiz_desc)
    VALUES
-   ( 'angular', 'Quiz two' ,'quiz to test');
+   ( 'type-script', 'type-script-quiz-two' ,'type Script Quiz Two' ,'quiz to test');
 
 
 
@@ -50,7 +66,7 @@ create table userauth_varification(
    PRIMARY KEY (user_email_address)
 );
 
-drop TABLE userauth_varification;
+drop TABLE quiz_quiz;
 INSERT INTO 
 userauth_varification ( email_address_id, email_varification)
    VALUES
@@ -64,5 +80,26 @@ discussion_discussion ( course_header_id, discussion_header,discussion_name, dis
    VALUES
    ( 'type-script', 'question-number-four' ,'Question Number Four' , "Some early exploration of the dashboard/overview for an eLearning platform I'm working on. This past month I've been working on some exciting stuff and can't wait to share more in the future!");
 
+DELETE from django_migrations where id = 49;
 
-update course_lesson set lesson_id =4 where id =8
+
+delete from django_migrations;
+drop table discussion_discussion
+
+
+insert INTO course_lesson(
+    lesson_header,
+    lesson_id,
+    course_header_id,
+    course_name,
+    lesson_name,
+    lesson_description ,
+    lesson_video_link,
+    lesson_video_minute
+) VALUES (
+   'type-script-getting-startted-with-type-script',2,'type-script','Type Script','Getting Started With Type Sctript',
+   'This is first lesson of the course and it will guide you how the basics of type script and it will setup the differet tool need to start learning',
+   'https://www.youtube.com/embed/OtwHJwP-juo',30
+);
+
+update course_lesson set lesson_about = "<h1>London is the capital city of England.</h1><p>This is a specific challenge overview inside the trackTraining platform I've been working on for the last couple of months.</p><p>The aim of the overview is to have a general picture of the overall material progress. While the emphasis is on overall progress—we also wanted to highlight specific trainee scores and grading.</p>" 
