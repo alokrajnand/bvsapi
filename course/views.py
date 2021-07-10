@@ -39,21 +39,7 @@ class CourseViewSet(viewsets.ViewSet):
         serializer = CourseSerializer(data)
         return Response(serializer.data)
 
-    def get_review_detail(self, request, name):
-        data = Review.objects.get(course_header=name)
-        serializer = CourseRevieSerializer(data)
-        return Response(serializer.data)
 
-    def get_faq_detail(self, request, name):
-        data = Faq.objects.filter(course_header=name)
-        if (data.count() == 0):
-            return Response({
-                'message': 'No Data',
-                'status': 400
-            })
-        else:
-            serializer = CourseFaqSerializer(data, many=True)
-            return Response(serializer.data)
 
 
 

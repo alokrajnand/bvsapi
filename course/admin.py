@@ -3,6 +3,7 @@ from .models import *
 
 class CourseAdmin(admin.ModelAdmin):
     list_display = ['id' ,'course_header', 'course_name','course_category']  
+
 admin.site.register(Course, CourseAdmin)
 
 

@@ -103,3 +103,26 @@ insert INTO course_lesson(
 );
 
 update course_lesson set lesson_about = "<h1>London is the capital city of England.</h1><p>This is a specific challenge overview inside the trackTraining platform I've been working on for the last couple of months.</p><p>The aim of the overview is to have a general picture of the overall material progress. While the emphasis is on overall progress—we also wanted to highlight specific trainee scores and grading.</p>" 
+
+
+INSERT INTO discussion_discussion(
+    discussion_header,
+    course_header_id ,
+    course_name,
+    lesson_header_id,
+    lesson_name ,
+    discussion_name,
+    discussion_desc,
+    discussion_views,
+    discussion_ans_count
+) VALUES(
+'how-to-setup-type-script-on-mac' , 
+'type-script',
+'Type Script',
+'type-script-basics-of-type-script',
+'Getting Started with Type Script',
+'How to setup type Script On mac',
+'I am very new to type script just started to setup the process of learnign. please help me to understand hoe to start ',
+100,
+10
+)

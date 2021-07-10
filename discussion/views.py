@@ -33,12 +33,12 @@ class DiscussionViewSet(viewsets.ViewSet):
         return Response(serializer.data)
 
     def get_detail(self, request, name):
-        data = Discussion.objects.get(course_header=name)
+        data = Discussion.objects.get(course_header_id=name)
         serializer = DiscussionSerializer(data)
         return Response(serializer.data)
 
     def get_discussion_by_course(self, request, name):
-        data = Discussion.objects.filter(course_header=name)
+        data = Discussion.objects.filter(course_header_id=name)
         if (data.count() == 0):
             return Response({
                 'message': 'No Data',
@@ -50,7 +50,7 @@ class DiscussionViewSet(viewsets.ViewSet):
 
     
     def get_discussion_by_lesson(self, request, name):
-        data = Discussion.objects.filter(course_header=name)
+        data = Discussion.objects.filter(lesson_header_id=name)
         if (data.count() == 0):
             return Response({
                 'message': 'No Data',

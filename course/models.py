@@ -25,7 +25,7 @@ class Course(models.Model):
     updated_dt = models.DateTimeField(default=datetime.now, null=True)
 
     def __str__(self):
-        return self.__all__
+        return self.course_header
 
 
 # **********************************************************
