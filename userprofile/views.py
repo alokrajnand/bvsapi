@@ -22,6 +22,7 @@ from django.core.mail import send_mail
 import random
 from django.db import Error
 from functions.generateOtp import *
+from functions.sendEmail import *
 
 
 # ******************************************************************
@@ -51,7 +52,10 @@ class UserProfileViewSet(viewsets.ViewSet):
             otp = GenerateOtp(email_address)
             print(otp)
             ## call sen mail function to send otp 
-
+            recipient = email_address
+            subject="OTP From Binary Village"
+            body= otp
+            send_email(recipient, subject, body)
             ## 
             return JsonResponse(serializer.data, status=201)
         else:

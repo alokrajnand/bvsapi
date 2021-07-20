@@ -1,11 +1,28 @@
-from django.core.mail import send_mail
+import smtplib
+from credential import *
 
-# ******************************************************************
-# sent mail function
-# *******************************************************************
 
-def SendEmail(email_address,subject, message):
-    from_email = "alok@binaryvillage.com"
-    to_email = email_address
+def send_email(recipient, subject, body):
 
-    send_mail(subject, message, from_email, [to_email], fail_silently=False,)
+    user_from = 'support@binaryvillage.com'
+    user= username
+    pwd= password
+    FROM = user_from
+    TO = recipient if isinstance(recipient, list) else [recipient]
+    SUBJECT = subject
+    TEXT = body
+
+    # Prepare actual message
+    message = """From: %s\nTo: %s\nSubject: %s\n\n%s
+    """ % (FROM, ", ".join(TO), SUBJECT, TEXT)
+    try:
+        server = smtplib.SMTP("smtp.gmail.com", 587)
+        server.ehlo()
+        server.starttls()
+        server.login(user, pwd)
+        server.sendmail(FROM, TO, message)
+        server.close()
+        return 'successfully sent the mail'
+    except:
+        return "failed to send mail"
+
